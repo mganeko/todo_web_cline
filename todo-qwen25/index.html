@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo App</h1>
+    <input type="text" id="todo-input" placeholder="Add a new todo">
+    <button onclick="addTodo()">Add Todo</button>
+    <ul id="todo-list"></ul>
+
+    <script>
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            const todoText = input.value.trim();
+            if (todoText === '') return;
+
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+
+            const span = document.createElement('span');
+            span.textContent = todoText;
+            li.appendChild(span);
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.onclick = function() {
+                li.remove();
+            };
+            li.appendChild(deleteBtn);
+
+            document.getElementById('todo-list').appendChild(li);
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
